@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Luxury Apparel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables للهوية البصرية */
+        :root {
+            --gold: #d4af37;
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --text-gray: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--text-gray);
+            font-family: 'Playfair Display', serif;
+            overflow-x: hidden;
+            /* منع السكرول في البداية */
+            overflow-y: hidden; 
+        }
+
+        /* --- 1. Splash Screen Style --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            /* استبدل pattern-bg.png بصورتك اللي فيها النقوش */
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('pattern-bg.png') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s;
+        }
+
+        .splash-content {
+            text-align: center;
+            animation: fadeInScale 2s ease-out;
+        }
+
+        .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: var(--gold);
+            letter-spacing: 20px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .tagline {
+            font-size: 0.8rem;
+            letter-spacing: 8px;
+            color: var(--gold);
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        #shop-now-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 18px 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.5s;
+            letter-spacing: 4px;
+            outline: none;
+        }
+
+        #shop-now-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        /* --- 2. Main Content Style --- */
+        #main-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.5s ease-out;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            z-index: 900;
+            border-bottom: 1px solid #222;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+        }
+
+        .nav-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            letter-spacing: 5px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        /* Products Section */
+        .products-container {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            letter-spacing: 10px;
+            color: var(--gold);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .product-card {
+            background: var(--dark-gray);
+            padding-bottom: 25px;
+            text-align: center;
+            transition: transform 0.4s;
+            border: 1px solid #222;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+        }
+
+        .product-img {
+            height: 450px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 20px;
+            background-color: #000;
+        }
+
+        .product-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .product-price {
+            color: var(--gold);
+            font-size: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Utility Class */
+        .show-content {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="splash-content">
+            <h1 class="logo-text">AURA</h1>
+            <p class="tagline">The Essence of Elegance</p>
+            <button id="shop-now-btn">ENTER STORE</button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <header>
+            <nav>
+                <div class="nav-links">COLLECTIONS</div>
+                <a href="#" class="nav-logo">AURA</a>
+                <div class="nav-links">BAG (0)</div>
+            </nav>
+        </header>
+
+        <main class="products-container">
+            <h2 class="section-title">THE COLLECTION</h2>
+            
+            <div class="grid">
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('polo-black.jpg');"></div>
+                    <h3 class="product-name">SIGNATURE BLACK POLO</h3>
+                    <p class="product-price">1,450 EGP</p>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('tshirt-white.jpg');"></div>
+                    <h3 class="product-name">ESSENTIAL WHITE TEE</h3>
+                    <p class="product-price">950 EGP</p>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('polo-navy.jpg');"></div>
+                    <h3 class="product-name">LUXURY NAVY POLO</h3>
+                    <p class="product-price">1,450 EGP</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('shop-now-btn');
+            const splash = document.getElementById('splash-screen');
+            const mainContent = document.getElementById('main-content');
+
+            btn.addEventListener('click', () => {
+                // 1. إخفاء الـ Splash Screen
+                splash.style.opacity = '0';
+                splash.style.visibility = 'hidden';
+
+                // 2. إظهار المحتوى الرئيسي بعد تأخير بسيط لضمان نعومة الحركة
+                setTimeout(() => {
+                    mainContent.classList.add('show-content');
+                    // السماح بالسكروول
+                    document.body.style.overflowY = 'auto';
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>
