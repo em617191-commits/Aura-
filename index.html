@@ -1,126 +1,179 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AURA | LUXURY STORE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root { --gold: #d4af37; --dark: #000; --dark-gray: rgba(10, 10, 10, 0.85); }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        
-        body { 
-            /* خلفية الصفحة الرئيسية - الصورة اللي بعتها */
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
-                        url('https://i.ibb.co/pjGR2hd9/pattern.jpg') center/cover no-repeat fixed;
-            color: #fff; 
-            overflow-x: hidden; 
+        :root {
+            --gold: #d4af37;
+            --dark-bg: #000;
+            --gray-text: #888;
         }
 
-        /* 1. Splash Screen - خلفية مستقلة لزوم الانبهار */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Playfair Display', serif; }
+        
+        body { background-color: var(--dark-bg); color: #fff; overflow-x: hidden; }
+
+        /* --- 1. Splash Screen - ستايل ملوكي --- */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
                         url('https://i.ibb.co/pjGR2hd9/pattern.jpg') center/cover no-repeat;
             z-index: 5000; display: flex; flex-direction: column; justify-content: center; align-items: center;
         }
-        .splash-logo { font-family: 'Cinzel'; font-size: 4rem; color: var(--gold); letter-spacing: 15px; margin-bottom: 30px; text-shadow: 0 0 30px rgba(212,175,55,0.5); }
+        .splash-logo { font-family: 'Cinzel', serif; font-size: clamp(3rem, 10vw, 5.5rem); color: var(--gold); letter-spacing: 20px; margin-bottom: 50px; text-shadow: 0 0 30px rgba(212,175,55,0.4); }
 
-        /* 2. الستور */
+        /* زرار دخول ملوكي (Matte Gold) */
+        .enter-btn {
+            background: transparent; border: 1px solid var(--gold); color: var(--gold); 
+            padding: 20px 70px; font-family: 'Cinzel', serif; font-size: 1rem; 
+            cursor: pointer; border-radius: 0; letter-spacing: 6px; transition: 0.5s; outline: none;
+        }
+        .enter-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
+
+        /* --- 2. الستور --- */
         .navbar { 
             padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; 
             background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gold); 
             position: sticky; top: 0; z-index: 1000;
         }
-        .logo { font-family: 'Cinzel'; font-size: 1.5rem; color: var(--gold); }
-        .cart-bolt { position: relative; cursor: pointer; color: var(--gold); font-size: 1.5rem; }
+        .logo { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--gold); letter-spacing: 5px; text-decoration: none; }
+        .cart-bolt { position: relative; cursor: pointer; color: var(--gold); font-size: 1.5rem; transition: 0.2s; }
         .badge { position: absolute; top: -5px; right: -12px; background: red; color: #fff; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; }
 
         /* Grid العرض (عمودين) */
         .container { padding: 40px 4%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 1200px; margin: 0 auto; }
         
         .card { 
-            background: var(--dark-gray); /* خلفية شبه شفافة للكروت */
-            border: 1px solid rgba(212,175,55,0.1); border-radius: 8px; overflow: hidden; 
+            background: rgba(10, 10, 10, 0.9); border: 1px solid rgba(212,175,55,0.1); border-radius: 4px; overflow: hidden; 
             transition: 0.3s; cursor: pointer;
         }
-        .card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-        .img-box { height: 200px; background: #000; overflow: hidden; }
+        .card:hover { border-color: var(--gold); transform: translateY(-3px); }
+        .img-box { height: 220px; background: #000; overflow: hidden; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .card:hover img { transform: scale(1.1); }
+        .card:hover img { transform: scale(1.05); }
         .info-box { padding: 15px; text-align: center; }
-        .info-box h4 { font-size: 0.95rem; color: #eee; margin-bottom: 5px; }
-        .price { color: var(--gold); font-weight: 900; }
+        .info-box h4 { font-size: 0.9rem; color: #eee; margin-bottom: 5px; font-family: 'Cinzel', serif; }
+        .price { color: var(--gold); font-weight: 700; font-family: 'Cinzel', serif; font-size: 1rem; }
 
-        /* Buttons & Overlays */
-        .add-btn { width: 100%; padding: 12px; background: var(--gold); color: #000; border: none; font-weight: 900; cursor: pointer; border-radius: 4px; transition: 0.3s; }
-        .add-btn:hover { background: #fff; }
-        
+        /* --- 3. الأوفرلاي (صفحة المنتج) - تعديلات الفخامة --- */
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 4000; display: none; overflow-y: auto; }
-        .close-btn { position: absolute; top: 20px; left: 20px; color: var(--gold); font-size: 2rem; cursor: pointer; }
+        
+        /* خلفية الأوفرلاي بالنقوش */
+        #overlayBody {
+            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), 
+                        url('https://i.ibb.co/pjGR2hd9/pattern.jpg') center/cover no-repeat;
+            min-height: 100%; display: flex; flex-direction: column;
+        }
+
+        .overlay-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid var(--gold); }
+        .overlay-logo { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.2rem; letter-spacing: 3px; }
+        .close-btn { color: var(--gold); font-size: 1.8rem; cursor: pointer; }
+
+        .overlay-img-container { text-align: center; padding: 20px; border-bottom: 1px solid var(--gold); }
+        .overlay-img { width: 100%; max-height: 400px; object-fit: contain; }
+
+        .product-details { padding: 30px 5%; text-align: right; }
+        .product-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #fff; margin-bottom: 10px; }
+        .product-desc { font-size: 0.95rem; color: var(--gray-text); line-height: 1.6; margin-bottom: 25px; }
+        .product-price { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--gold); margin-bottom: 30px; }
+
+        /* --- 4. ستايل خانة المقاسات (Sizes) --- */
+        .size-section { margin-bottom: 40px; text-align: right; }
+        .section-title { font-size: 1rem; color: #fff; margin-bottom: 15px; letter-spacing: 2px; text-transform: uppercase; }
+        .size-options { display: flex; gap: 15px; justify-content: flex-start; }
+        .size-btn {
+            background: transparent; border: 1px solid rgba(212,175,55,0.3); color: var(--gold); 
+            padding: 15px 30px; font-family: 'Cinzel', serif; font-size: 1.1rem; 
+            cursor: pointer; border-radius: 0; transition: 0.3s; outline: none;
+        }
+        .size-btn:hover, .size-btn.active { background: var(--gold); color: #000; border-color: var(--gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+
+        /* --- 5. زرار السلة الإنجليزي (English Black Gold) --- */
+        .add-btn { 
+            width: 100%; padding: 18px; background: #000; color: var(--gold); 
+            border: 1px solid var(--gold); font-family: 'Cinzel', serif;
+            font-size: 1.1rem; cursor: pointer; border-radius: 0; letter-spacing: 4px; transition: 0.3s;
+        }
+        .add-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(212, 175, 55, 0.5); }
 
         /* Cart Page */
         .cart-page { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 4500; display: none; flex-direction: column; padding: 20px; }
-        input, select { width: 100%; padding: 12px; margin-bottom: 10px; background: #111; color: #fff; border: 1px solid #333; border-radius: 4px; }
-        .vodafone-box { display: none; padding: 15px; border: 1px dashed var(--gold); margin-bottom: 15px; background: #080808; border-radius: 4px; }
+        input, select { width: 100%; padding: 12px; margin-bottom: 10px; background: #111; color: #fff; border: 1px solid #333; border-radius: 0; }
+        .vodafone-box { display: none; padding: 15px; border: 1px dashed var(--gold); margin-bottom: 15px; background: #080808; border-radius: 0; }
     </style>
 </head>
 <body>
 
     <div id="splash-screen">
         <div class="splash-logo">AURA</div>
-        <button class="add-btn" style="width:auto; padding:15px 50px; font-size:1.1rem; border-radius: 0;" onclick="closeSplash()">ENTER STORE</button>
+        <button class="enter-btn" onclick="closeSplash()">ENTER STORE</button>
     </div>
 
     <nav class="navbar">
-        <div class="logo">AURA</div>
+        <a href="#" class="logo">AURA</a>
         <div class="cart-bolt" onclick="openCart()">
             <i class="fas fa-shopping-bag"></i>
             <span class="badge" id="cartBadge">0</span>
         </div>
     </nav>
 
-    <div class="container" id="productGrid"></div>
+    <div class="container" id="productGrid">
+        </div>
 
     <div class="overlay" id="productOverlay">
-        <span class="close-btn" onclick="closeOverlay()"><i class="fas fa-times"></i></span>
-        <div id="overlayBody" style="text-align:right;"></div>
+        <div id="overlayBody">
+            <div class="overlay-header">
+                <span class="close-btn" onclick="closeOverlay()"><i class="fas fa-times"></i></span>
+                <div class="overlay-logo">AURA</div>
+            </div>
+            
+            <div class="overlay-img-container">
+                <img src="" onerror="this.src='https://via.placeholder.com/600x400/000/d4af37?text=AURA'" class="overlay-img" id="overlayProductImg">
+            </div>
+
+            <div class="product-details" id="overlayProductDetails">
+                </div>
+        </div>
     </div>
 
     <div class="cart-page" id="cartPage">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-            <h2 style="color:var(--gold);">سلة المشتريات 🛍️</h2>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+            <h2 style="color:var(--gold);">Cart 🛍️</h2>
             <i class="fas fa-times" onclick="closeCart()" style="color:var(--gold); font-size:1.5rem; cursor:pointer;"></i>
         </div>
         <div id="cartList" style="flex-grow:1; overflow-y:auto; padding:10px 0;"></div>
-        <div id="totalPrice" style="padding:20px; color:var(--gold); font-size:1.5rem; text-align:center; font-weight:bold;"></div>
+        <div id="totalPrice" style="padding:20px; color:var(--gold); font-size:1.6rem; text-align:center; font-weight:bold; font-family: 'Cinzel', serif;"></div>
         
-        <form action="https://formspree.io/f/xjgjkvqv" method="POST">
+        <form action="https://formspree.io/f/your_unique_id" method="POST">
             <input type="hidden" name="Order_Details" id="orderData">
-            <input type="text" name="Name" placeholder="الاسم الكامل" required>
-            <input type="tel" name="Phone" placeholder="رقم الواتساب" required>
-            <input type="text" name="Address" placeholder="العنوان بالتفصيل" required>
+            <input type="text" name="Name" placeholder="Full Name" required>
+            <input type="tel" name="Phone" placeholder="Phone Number (WhatsApp)" required>
+            <input type="text" name="Address" placeholder="Detailed Address" required>
             <select name="Payment" id="payMethod" onchange="togglePay()">
-                <option value="Cash">دفع عند الاستلام</option>
-                <option value="Vodafone">فودافون كاش</option>
+                <option value="Cash">Cash on Delivery</option>
+                <option value="Vodafone">Vodafone Cash</option>
             </select>
-            <div id="vodafoneBox" class="vodafone-box">تحويل لـ: <b style="color:var(--gold)">01018758798</b></div>
-            <button type="submit" class="add-btn" style="font-size:1.1rem;">تأكيد الطلب 🚀</button>
+            <div id="vodafoneBox" class="vodafone-box">حول لـ: <b style="color:var(--gold)">01018758798</b></div>
+            <button type="submit" class="add-btn">CONFIRM ORDER 🚀</button>
         </form>
     </div>
 
     <script>
-        // لستة المنتجات - عدل الصور والأسماء والأسعار هنا
+        // لستة المنتجات مع المقاسات المتاحة
         const products = [
-            { id: 1, name: "SIGNATURE POLO - BLACK", price: 1250, img: "polo.jpg", desc: "خامة بريميوم تقفيل عالى." },
-            { id: 2, name: "LUXURY TEE - WHITE", price: 850, img: "tee.jpg", desc: "قطن 100% مريح جداً." },
-            { id: 3, name: "AURA CLASSIC HOODIE", price: 1800, img: "hoodie.jpg", desc: "ثقيل ومناسب للشتاء." },
-            { id: 4, name: "PREMIUM JOGGERS", price: 1100, img: "joggers.jpg", desc: "مريح جداً للتمارين." }
+            { id: 1, name: "SIGNATURE POLO - BLACK", price: 1250, img: "polo.jpg", desc: "خامة بريميوم تقفيل عالى.", sizes: ["L", "XL", "2XL", "3XL"] },
+            { id: 2, name: "LUXURY TEE - WHITE", price: 850, img: "tee.jpg", desc: "قطن 100% مريح جداً.", sizes: ["XL", "2XL"] },
+            { id: 3, name: "AURA CLASSIC HOODIE", price: 1800, img: "hoodie.jpg", desc: "ثقيل ومناسب للشتاء.", sizes: ["L", "XL", "2XL"] },
+            { id: 4, name: "PREMIUM JOGGERS", price: 1100, img: "joggers.jpg", desc: "مريح جداً للتمارين.", sizes: ["M", "L", "XL"] }
         ];
 
         let cart = [];
+        let selectedSize = null;
 
         function closeSplash() { 
             const splash = document.getElementById('splash-screen');
@@ -143,22 +196,56 @@
 
         function viewProduct(id) {
             const p = products.find(i => i.id === id);
-            document.getElementById('overlayBody').innerHTML = `
-                <img src="${p.img}" onerror="this.src='https://via.placeholder.com/600x400/000/d4af37?text=AURA'" style="width:100%; height:350px; object-fit:cover; border-bottom: 2px solid var(--gold);">
-                <div style="padding:25px;">
-                    <h2 style="color:var(--gold); font-family:'Cinzel';">${p.name}</h2>
-                    <p style="margin:20px 0; color:#ccc; line-height:1.6;">${p.desc}</p>
-                    <div class="price" style="font-size:1.8rem; margin-bottom:25px;">${p.price} EGP</div>
-                    <button class="add-btn" onclick="addToCart(${p.id}); closeOverlay();">إضافة للسلة 🛍️</button>
+            document.getElementById('overlayProductImg').src = p.img;
+            selectedSize = null; // إعادة تعيين المقاس المختار
+
+            // بناء المقاسات بتنسيق الـ Grid
+            const sizeHtml = p.sizes.map(size => `
+                <button class="size-btn" onclick="selectSize(this, '${size}')">${size}</button>
+            `).join('');
+
+            document.getElementById('overlayProductDetails').innerHTML = `
+                <h1 class="product-title">${p.name}</h1>
+                <p class="product-desc">${p.desc}</p>
+                
+                <div class="size-section">
+                    <h3 class="section-title">Select Size</h3>
+                    <div class="size-options">
+                        ${sizeHtml}
+                    </div>
                 </div>
+
+                <div class="product-price">${p.price} EGP</div>
+                
+                <button class="add-btn" onclick="tryAddToCart(${p.id});">ADD TO CART 🛍️</button>
             `;
             document.getElementById('productOverlay').style.display = 'block';
         }
 
-        function addToCart(id) {
-            cart.push(products.find(p => p.id === id));
+        function selectSize(btn, size) {
+            // إزالة العلامة النشطة من جميع الزراير
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            // إضافة العلامة النشطة للزرار المختار
+            btn.classList.add('active');
+            selectedSize = size; // حفظ المقاس المختار
+        }
+
+        function tryAddToCart(id) {
+            // التحقق من اختيار المقاس
+            if(!selectedSize) {
+                alert("Please select a size first ❗");
+                return;
+            }
+            addToCart(id, selectedSize);
+            closeOverlay();
+        }
+
+        function addToCart(id, size) {
+            const p = products.find(i => i.id === id);
+            cart.push({...p, selectedSize: size}); // حفظ المنتج مع المقاس
             updateCart();
-            // تنبيه خفيف بدل الـ alert البايخة
+            
+            // تنبيه خفيف للحركة
             const btn = document.querySelector('.cart-bolt');
             btn.style.transform = 'scale(1.2)';
             setTimeout(() => btn.style.transform = 'scale(1)', 200);
@@ -171,15 +258,15 @@
                 total += item.price;
                 return `<div style="display:flex; justify-content:space-between; align-items:center; padding:15px; border-bottom:1px solid #222; background:rgba(255,255,255,0.02);">
                     <div>
-                        <div style="font-weight:bold; color:#fff;">${item.name}</div>
+                        <div style="font-weight:bold; color:#fff;">${item.name} (${item.selectedSize})</div>
                         <div style="color:var(--gold);">${item.price} EGP</div>
                     </div>
                     <i class="fas fa-trash" onclick="removeFromCart(${index})" style="color:#555; cursor:pointer;"></i>
                 </div>`;
             }).join('');
-            document.getElementById('totalPrice').innerText = "الإجمالي: " + total + " EGP";
-            // تجهيز البيانات للفورم بشكل مقروء
-            document.getElementById('orderData').value = cart.map(i => `${i.name} (${i.price})`).join(', ') + ` | المجموع: ${total}`;
+            document.getElementById('totalPrice').innerText = total + " EGP";
+            // تجهيز البيانات للفورم بشكل مقروء مع المقاسات
+            document.getElementById('orderData').value = cart.map(i => `${i.name} - ${i.selectedSize} (${i.price})`).join(', ') + ` | Total: ${total}`;
         }
 
         function removeFromCart(index) {
@@ -193,12 +280,12 @@
 
         function openCart() { 
             if(cart.length > 0) document.getElementById('cartPage').style.display = 'flex'; 
-            else alert('السلة فارغة، ضيف منتجات الأول 😉'); 
+            else alert('Cart is empty, add some luxury items 😉'); 
         }
         function closeCart() { document.getElementById('cartPage').style.display = 'none'; }
         function closeOverlay() { document.getElementById('productOverlay').style.display = 'none'; }
 
-        // تشغيل الـ Grid في الخلفية عشان تظهر ورا الـ Splash
+        // تشغيل الـ Grid في الخلفية
         renderProducts();
     </script>
 </body>
