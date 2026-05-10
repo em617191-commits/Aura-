@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
+<html lang="en" dir="ltr"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DRAGON LEGACY | LUXURY STORE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -13,15 +12,14 @@
             --dark-bg: #000;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Playfair Display', serif; }
         
-        body { background-color: var(--dark-bg); color: #fff; overflow-x: hidden; }
+        body { background-color: var(--dark-bg); color: #fff; overflow-x: hidden; text-align: center; }
 
-        /* --- 1. Splash Screen --- */
+        /* --- 1. Splash Screen (التوسيط الكامل) --- */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            /* الرابط المباشر للصورة لضمان الظهور */
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), 
                         url('https://i.ibb.co/v44m8YmP/image.png') center/cover no-repeat;
             z-index: 5000; display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center;
@@ -29,62 +27,81 @@
 
         .splash-logo { 
             font-family: 'Cinzel', serif; 
-            font-size: clamp(1.8rem, 8vw, 3.2rem); 
+            font-size: clamp(2rem, 10vw, 4rem); 
             color: var(--gold); 
-            letter-spacing: 6px; 
+            letter-spacing: 8px; 
             margin-bottom: 40px; 
             font-weight: 700;
-            line-height: 1.3;
-            text-transform: uppercase;
+            line-height: 1.2;
+            display: block;
+            width: 100%;
         }
 
-        /* زرار Shop Now المستطيل الشفاف */
         .enter-btn {
             background: transparent; 
             border: 1px solid var(--gold); 
             color: var(--gold); 
-            padding: 14px 50px; 
+            padding: 15px 50px; 
             font-family: 'Cinzel', serif; 
             font-size: 0.8rem; 
             cursor: pointer; 
             letter-spacing: 4px; 
-            transition: 0.4s;
+            transition: 0.5s;
             text-transform: uppercase;
         }
-        .enter-btn:hover { background: rgba(212, 175, 55, 0.15); }
+        .enter-btn:hover { background: rgba(212, 175, 55, 0.1); }
 
-        /* --- 2. Navbar (لوجو DL وتحته الاسم كامل في النص) --- */
+        /* --- 2. Navbar (DL + Name) --- */
         .navbar { 
-            padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; 
             background: #000; border-bottom: 1px solid rgba(212,175,55,0.1); 
             position: sticky; top: 0; z-index: 1000;
         }
 
-        .brand-header { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .brand-header { flex-grow: 1; display: flex; flex-direction: column; align-items: center; }
         .dl-text { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold); font-weight: 900; line-height: 1; }
-        .full-name { font-family: 'Cinzel', serif; font-size: 0.5rem; color: #888; letter-spacing: 2px; margin-top: 4px; }
+        .full-name { font-family: 'Cinzel', serif; font-size: 0.5rem; color: #777; letter-spacing: 2px; margin-top: 3px; font-weight: 400; }
 
         .cart-bolt { position: relative; cursor: pointer; color: var(--gold); font-size: 1.3rem; min-width: 40px; text-align: right; }
-        .badge { position: absolute; top: -5px; right: -5px; background: var(--gold); color: #000; font-size: 0.6rem; padding: 2px 5px; border-radius: 50%; font-weight: bold; }
+        .badge { position: absolute; top: -8px; right: -8px; background: var(--gold); color: #000; font-size: 0.6rem; padding: 2px 5px; border-radius: 50%; font-weight: bold; }
 
-        /* --- 3. Grid --- */
+        /* --- 3. Product Grid --- */
         .container { padding: 30px 4%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 1200px; margin: 0 auto; }
-        .card { background: #080808; border: 1px solid #151515; cursor: pointer; }
-        .img-box { height: 220px; overflow: hidden; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        .info-box { padding: 12px; text-align: center; }
-        .info-box h4 { font-size: 0.75rem; font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
-        .price { color: var(--gold); font-size: 0.85rem; margin-top: 5px; font-family: 'Cinzel', serif; font-weight: bold; }
+        
+        .card { background: #050505; border: 1px solid #111; transition: 0.3s; cursor: pointer; text-align: center; }
+        .img-box { height: 220px; overflow: hidden; background: #000; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.5s; }
+        .card:hover img { opacity: 1; transform: scale(1.05); }
+        .info-box { padding: 12px; }
+        .info-box h4 { font-size: 0.75rem; color: #eee; font-family: 'Cinzel', serif; letter-spacing: 1px; }
+        .price { color: var(--gold); font-size: 0.85rem; margin-top: 5px; font-weight: bold; font-family: 'Cinzel', serif; }
 
         /* --- 4. Overlay --- */
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 4000; display: none; overflow-y: auto; }
         .overlay-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid #111; }
-        .close-btn { color: var(--gold); font-size: 1.5rem; cursor: pointer; min-width: 40px; }
-        .overlay-content { padding: 30px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .overlay-img { width: 100%; max-width: 350px; margin-bottom: 20px; }
-        
-        .add-btn { width: 100%; max-width: 300px; padding: 18px; border: 1px solid var(--gold); background: transparent; color: var(--gold); font-family: 'Cinzel'; cursor: pointer; letter-spacing: 3px; }
+        .close-btn { color: var(--gold); font-size: 1.5rem; cursor: pointer; min-width: 40px; text-align: left; }
+        .overlay-content { padding: 30px 20px; display: flex; flex-direction: column; align-items: center; }
+        .overlay-img { width: 100%; max-width: 350px; margin-bottom: 25px; }
+
+        .product-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: #fff; margin-bottom: 10px; letter-spacing: 1px; }
+        .product-desc { font-size: 0.85rem; color: #666; margin-bottom: 30px; max-width: 500px; line-height: 1.6; }
+
+        .size-options { display: flex; gap: 10px; justify-content: center; margin-bottom: 30px; }
+        .size-btn {
+            background: transparent; border: 1px solid #333; color: #fff; 
+            width: 45px; height: 45px; font-family: 'Cinzel', serif; cursor: pointer; transition: 0.3s;
+        }
+        .size-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(212,175,55,0.05); }
+
+        .add-btn { 
+            width: 100%; max-width: 300px; padding: 18px; background: transparent; color: var(--gold); 
+            border: 1px solid var(--gold); font-family: 'Cinzel', serif; cursor: pointer; letter-spacing: 3px; font-size: 0.9rem;
+        }
         .add-btn:hover { background: var(--gold); color: #000; }
+
+        /* Cart Page */
+        .cart-page { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 4500; display: none; flex-direction: column; padding: 30px 8%; }
+        input { width: 100%; padding: 15px; margin-bottom: 12px; background: #0a0a0a; color: #fff; border: 1px solid #222; font-family: 'Cinzel', serif; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -99,14 +116,13 @@
             <span class="dl-text">DL</span>
             <span class="full-name">DRAGON LEGACY</span>
         </div>
-        <div class="cart-bolt">
+        <div class="cart-bolt" onclick="openCart()">
             <i class="fas fa-shopping-bag"></i>
             <span class="badge" id="cartBadge">0</span>
         </div>
     </nav>
 
-    <div class="container" id="productGrid">
-        </div>
+    <div class="container" id="productGrid"></div>
 
     <div class="overlay" id="productOverlay">
         <div class="overlay-header">
@@ -117,29 +133,48 @@
             </div>
             <div style="min-width: 40px;"></div>
         </div>
-        <div class="overlay-content" id="overlayBody"></div>
+        <div class="overlay-content">
+            <img src="" class="overlay-img" id="overlayProductImg">
+            <div id="overlayDetails"></div>
+        </div>
+    </div>
+
+    <div class="cart-page" id="cartPage">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+            <h2 style="color:var(--gold); font-family:'Cinzel'; letter-spacing:3px;">CART</h2>
+            <i class="fas fa-times" onclick="closeCart()" style="color:var(--gold); cursor:pointer; font-size:1.5rem;"></i>
+        </div>
+        <div id="cartList" style="flex-grow:1; overflow-y:auto;"></div>
+        <div id="totalPrice" style="padding:20px; color:var(--gold); font-size:1.4rem; font-family:'Cinzel';"></div>
+        
+        <form>
+            <input type="text" placeholder="FULL NAME" required>
+            <input type="tel" placeholder="PHONE NUMBER" required>
+            <input type="text" placeholder="SHIPPING ADDRESS" required>
+            <button type="button" class="add-btn" style="width:100%; background:var(--gold); color:#000; font-weight:bold;">CONFIRM ORDER</button>
+        </form>
     </div>
 
     <script>
         const products = [
-            { id: 1, name: "ROYAL POLO - BLACK", price: 1250, img: "https://via.placeholder.com/400x500/000/d4af37?text=DRAGON+POLO" },
-            { id: 2, name: "LEGACY TEE - WHITE", price: 850, img: "https://via.placeholder.com/400x500/000/d4af37?text=DRAGON+TEE" }
+            { id: 1, name: "LEGACY POLO - BLACK", price: 1250, img: "polo.jpg", desc: "Signature fit with gold-threaded dragon emblem.", sizes: ["L", "XL", "2XL"] },
+            { id: 2, name: "DYNASTY TEE - WHITE", price: 850, img: "tee.jpg", desc: "Premium cotton with a minimal DL chest print.", sizes: ["XL", "2XL"] },
+            { id: 3, name: "EMPEROR HOODIE", price: 1800, img: "hoodie.jpg", desc: "Heavyweight luxury fleece for all seasons.", sizes: ["L", "XL"] }
         ];
 
-        function closeSplash() {
-            const splash = document.getElementById('splash-screen');
-            splash.style.transition = '0.6s';
-            splash.style.opacity = '0';
-            setTimeout(() => {
-                splash.style.display = 'none';
-                renderProducts();
-            }, 600);
+        let cart = [];
+        let selectedSize = null;
+
+        function closeSplash() { 
+            document.getElementById('splash-screen').style.opacity = '0';
+            setTimeout(() => document.getElementById('splash-screen').style.display = 'none', 600);
+            renderProducts();
         }
 
         function renderProducts() {
             document.getElementById('productGrid').innerHTML = products.map(p => `
                 <div class="card" onclick="viewProduct(${p.id})">
-                    <div class="img-box"><img src="${p.img}"></div>
+                    <div class="img-box"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/300x400/000/d4af37?text=DL'"></div>
                     <div class="info-box">
                         <h4>${p.name}</h4>
                         <div class="price">${p.price} EGP</div>
@@ -150,16 +185,52 @@
 
         function viewProduct(id) {
             const p = products.find(i => i.id === id);
-            document.getElementById('overlayBody').innerHTML = `
-                <img src="${p.img}" class="overlay-img">
-                <h1 style="font-family:'Cinzel'; margin-bottom:10px; color:#fff;">${p.name}</h1>
-                <div class="price" style="font-size:1.5rem; margin-bottom:20px;">${p.price} EGP</div>
-                <button class="add-btn">ADD TO COLLECTION</button>
+            document.getElementById('overlayProductImg').src = p.img;
+            selectedSize = null;
+
+            document.getElementById('overlayDetails').innerHTML = `
+                <h1 class="product-title">${p.name}</h1>
+                <p class="product-desc">${p.desc}</p>
+                <div class="size-options">
+                    ${p.sizes.map(s => `<button class="size-btn" onclick="selectSize(this, '${s}')">${s}</button>`).join('')}
+                </div>
+                <div class="price" style="font-size:1.6rem; margin-bottom:20px;">${p.price} EGP</div>
+                <button class="add-btn" onclick="addToCart(${p.id})">ADD TO BAG</button>
             `;
             document.getElementById('productOverlay').style.display = 'block';
         }
 
+        function selectSize(btn, size) {
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedSize = size;
+        }
+
+        function addToCart(id) {
+            if(!selectedSize) { alert("Please select a size"); return; }
+            const p = products.find(i => i.id === id);
+            cart.push({...p, size: selectedSize});
+            updateCart();
+            closeOverlay();
+        }
+
+        function updateCart() {
+            document.getElementById('cartBadge').innerText = cart.length;
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('cartList').innerHTML = cart.map((item, index) => `
+                <div style="display:flex; justify-content:space-between; padding:15px; border-bottom:1px solid #111; font-family:'Cinzel'; font-size:0.8rem;">
+                    <div>${item.name} (${item.size})</div>
+                    <div style="color:var(--gold);">${item.price} EGP</div>
+                </div>
+            `).join('');
+            document.getElementById('totalPrice').innerText = "TOTAL: " + total + " EGP";
+        }
+
+        function openCart() { document.getElementById('cartPage').style.display = 'flex'; }
+        function closeCart() { document.getElementById('cartPage').style.display = 'none'; }
         function closeOverlay() { document.getElementById('productOverlay').style.display = 'none'; }
+
+        renderProducts();
     </script>
 </body>
 </html>
