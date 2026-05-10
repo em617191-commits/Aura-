@@ -9,7 +9,7 @@
     
     <style>
         :root {
-            --gold: #d4af37; /* لون الذهب الملكي الأصل */
+            --gold: #d4af37; 
             --dark-bg: #000;
             --gray-text: #888;
         }
@@ -18,185 +18,165 @@
         
         body { background-color: var(--dark-bg); color: #fff; overflow-x: hidden; }
 
-        /* --- 1. Splash Screen - التصميم الأصلي مع خلفية جديدة --- */
+        /* --- 1. Splash Screen (تطابق الصورة التي أرسلتها) --- */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            /* وضع الصورة الجديدة كخلفية */
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)), 
+            /* خلفية صورة Dragon Legacy */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
                         url('https://i.ibb.co/v44m8YmP/image.png') center/cover no-repeat;
             z-index: 5000; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: 0.8s ease-in-out;
         }
-        /* الاسم في الشاشة الافتتاحية */
-        .splash-logo { font-family: 'Cinzel', serif; font-size: clamp(3rem, 10vw, 5.5rem); color: var(--gold); letter-spacing: 15px; margin-bottom: 50px; text-shadow: 0 0 30px rgba(212,175,55,0.4); font-weight: 700; }
 
-        /* زر دخول ملوكي شفاف (كما في التصميم الأصلي) */
+        /* اسم البراند في الشاشة الافتتاحية */
+        .splash-logo { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(2.5rem, 8vw, 4.5rem); 
+            color: var(--gold); 
+            letter-spacing: 12px; 
+            margin-bottom: 40px; 
+            font-weight: 700;
+        }
+
+        /* زر SHOP NOW (مطابق للصورة: مستطيل شفاف ببرواز ذهبي) */
         .enter-btn {
-            background: transparent; border: 1px solid var(--gold); color: var(--gold); 
-            padding: 20px 70px; font-family: 'Cinzel', serif; font-size: 1rem; 
-            cursor: pointer; border-radius: 0; letter-spacing: 6px; transition: 0.5s; outline: none;
+            background: transparent; 
+            border: 1px solid var(--gold); 
+            color: var(--gold); 
+            padding: 15px 60px; 
+            font-family: 'Cinzel', serif; 
+            font-size: 0.9rem; 
+            cursor: pointer; 
+            letter-spacing: 5px; 
+            transition: 0.5s;
+            text-transform: uppercase;
         }
-        .enter-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
+        .enter-btn:hover { background: rgba(212, 175, 55, 0.1); }
 
-        /* --- 2. الستور --- */
+        /* --- 2. Navbar (لوجو DL وتحته الاسم كامل) --- */
         .navbar { 
-            padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; 
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(212,175,55,0.2); 
+            padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; 
+            background: #000; border-bottom: 1px solid rgba(212,175,55,0.15); 
             position: sticky; top: 0; z-index: 1000;
         }
 
-        /* تنسيق اللوجو DL مع الاسم تحته */
-        .brand-logo-container { text-align: center; text-decoration: none; display: flex; flex-direction: column; align-items: center; }
-        .logo-dl { font-family: 'Cinzel', serif; font-size: 2rem; color: var(--gold); letter-spacing: -2px; font-weight: 900; line-height: 1; }
-        .logo-name { font-family: 'Cinzel', serif; font-size: 0.6rem; color: #aaa; letter-spacing: 3px; text-transform: uppercase; margin-top: 2px; }
+        .brand-header { text-align: center; display: flex; flex-direction: column; align-items: center; text-decoration: none; }
+        .dl-text { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold); font-weight: 900; line-height: 0.9; }
+        .full-name { font-family: 'Cinzel', serif; font-size: 0.55rem; color: #888; letter-spacing: 2px; margin-top: 4px; }
 
-        .cart-bolt { position: relative; cursor: pointer; color: var(--gold); font-size: 1.5rem; transition: 0.2s; }
-        .badge { position: absolute; top: -5px; right: -12px; background: #c19b2a; color: #000; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; font-weight: bold; }
+        .cart-bolt { position: relative; cursor: pointer; color: var(--gold); font-size: 1.3rem; }
+        .badge { position: absolute; top: -8px; right: -12px; background: var(--gold); color: #000; font-size: 0.65rem; padding: 2px 5px; border-radius: 50%; font-weight: bold; }
 
-        /* Grid العرض (عمودين - التصميم الأصلي) */
-        .container { padding: 40px 4%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 1200px; margin: 0 auto; }
+        /* Grid العرض */
+        .container { padding: 30px 4%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 1200px; margin: 0 auto; }
         
-        .card { 
-            background: rgba(10, 10, 10, 0.9); border: 1px solid rgba(212,175,55,0.1); border-radius: 4px; overflow: hidden; 
-            transition: 0.3s; cursor: pointer;
-        }
-        .card:hover { border-color: var(--gold); transform: translateY(-3px); }
-        .img-box { height: 220px; background: #000; overflow: hidden; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; opacity: 0.9; }
-        .card:hover img { transform: scale(1.05); opacity: 1; }
-        .info-box { padding: 15px; text-align: center; }
-        .info-box h4 { font-size: 0.9rem; color: #eee; margin-bottom: 5px; font-family: 'Cinzel', serif; letter-spacing: 1px; }
-        .price { color: var(--gold); font-weight: 700; font-family: 'Cinzel', serif; font-size: 1rem; }
+        .card { background: #080808; border: 1px solid #151515; border-radius: 2px; overflow: hidden; transition: 0.3s; }
+        .img-box { height: 240px; background: #000; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .info-box { padding: 12px; text-align: center; }
+        .info-box h4 { font-size: 0.8rem; color: #ccc; font-family: 'Cinzel', serif; letter-spacing: 1px; }
+        .price { color: var(--gold); font-size: 0.9rem; margin-top: 5px; font-weight: bold; }
 
-        /* --- 3. الأوفرلاي (صفحة المنتج - التصميم الأصلي) --- */
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 4000; display: none; overflow-y: auto; }
+        /* --- 3. Overlay (Product Details) --- */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 4000; display: none; overflow-y: auto; }
         
-        /* خلفية الأوفرلاي بنقوش هادئة (كما في الأصلي) */
-        #overlayBody {
-            background: linear-gradient(rgba(0,0,0,0.95), rgba(0,0,0,0.95)), 
-                        url('https://i.ibb.co/v44m8YmP/image.png') center/cover no-repeat;
-            min-height: 100%; display: flex; flex-direction: column;
-        }
+        .overlay-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid #111; }
+        .close-btn { color: var(--gold); font-size: 1.5rem; cursor: pointer; }
 
-        .overlay-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid rgba(212,175,55,0.2); }
-        .close-btn { color: var(--gold); font-size: 1.8rem; cursor: pointer; }
+        .overlay-content { padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .overlay-img { width: 100%; max-width: 400px; object-fit: contain; margin-bottom: 20px; }
 
-        .overlay-img-container { text-align: center; padding: 20px; border-bottom: 1px solid rgba(212,175,55,0.1); }
-        .overlay-img { width: 100%; max-height: 400px; object-fit: contain; filter: drop-shadow(0 0 15px rgba(0,0,0,0.5)); }
+        .product-title { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 10px; }
+        .product-desc { font-size: 0.9rem; color: #666; margin-bottom: 25px; line-height: 1.5; }
 
-        .product-details { padding: 30px 5%; text-align: right; }
-        .product-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #fff; margin-bottom: 10px; }
-        .product-desc { font-size: 0.95rem; color: var(--gray-text); line-height: 1.6; margin-bottom: 25px; }
-        .product-price { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--gold); margin-bottom: 30px; }
-
-        /* --- 4. ستايل خانة المقاسات (Sizes - التصميم الأصلي) --- */
-        .size-section { margin-bottom: 40px; text-align: right; }
-        .section-title { font-size: 1rem; color: #fff; margin-bottom: 15px; letter-spacing: 2px; text-transform: uppercase; }
-        .size-options { display: flex; gap: 15px; justify-content: flex-start; }
+        /* Sizes */
+        .size-options { display: flex; gap: 10px; justify-content: center; margin-bottom: 30px; }
         .size-btn {
-            background: transparent; border: 1px solid rgba(212,175,55,0.3); color: var(--gold); 
-            padding: 15px 30px; font-family: 'Cinzel', serif; font-size: 1.1rem; 
-            cursor: pointer; border-radius: 0; transition: 0.3s; outline: none;
+            background: transparent; border: 1px solid #333; color: #fff; 
+            width: 45px; height: 45px; font-family: 'Cinzel', serif; cursor: pointer;
         }
-        .size-btn:hover, .size-btn.active { background: var(--gold); color: #000; border-color: var(--gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+        .size-btn.active { border-color: var(--gold); color: var(--gold); }
 
-        /* --- 5. زرار السلة الإنجليزي (English Black Gold - التصميم الأصلي) --- */
         .add-btn { 
-            width: 100%; padding: 18px; background: #000; color: var(--gold); 
-            border: 1px solid var(--gold); font-family: 'Cinzel', serif;
-            font-size: 1.1rem; cursor: pointer; border-radius: 0; letter-spacing: 4px; transition: 0.3s;
+            width: 100%; max-width: 350px; padding: 18px; background: transparent; color: var(--gold); 
+            border: 1px solid var(--gold); font-family: 'Cinzel', serif; cursor: pointer; letter-spacing: 2px;
         }
-        .add-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(212, 175, 55, 0.5); }
+        .add-btn:hover { background: var(--gold); color: #000; }
 
-        /* Cart Page */
+        /* Cart */
         .cart-page { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 4500; display: none; flex-direction: column; padding: 20px; }
-        input, select { width: 100%; padding: 12px; margin-bottom: 10px; background: #111; color: #fff; border: 1px solid #333; border-radius: 0; outline: none; }
-        input:focus { border-color: var(--gold); }
+        input { width: 100%; padding: 15px; margin-bottom: 10px; background: #0a0a0a; color: #fff; border: 1px solid #222; }
     </style>
 </head>
 <body>
 
     <div id="splash-screen">
-        <div class="splash-logo">AURA</div>
+        <div class="splash-logo">DRAGON LEGACY</div>
         <button class="enter-btn" onclick="closeSplash()">SHOP NOW</button>
     </div>
 
     <nav class="navbar">
-        <a href="#" class="brand-logo-container">
-            <div class="logo-dl">DL</div>
-            <div class="logo-name">DRAGON LEGACY</div>
-        </a>
+        <div style="width: 30px;"></div> <div class="brand-header">
+            <span class="dl-text">DL</span>
+            <span class="full-name">DRAGON LEGACY</span>
+        </div>
         <div class="cart-bolt" onclick="openCart()">
             <i class="fas fa-shopping-bag"></i>
             <span class="badge" id="cartBadge">0</span>
         </div>
     </nav>
 
-    <div class="container" id="productGrid">
-        </div>
+    <div class="container" id="productGrid"></div>
 
     <div class="overlay" id="productOverlay">
-        <div id="overlayBody">
-            <div class="overlay-header">
-                <span class="close-btn" onclick="closeOverlay()"><i class="fas fa-times"></i></span>
-                <div class="brand-logo-container">
-                    <div class="logo-dl" style="font-size: 1.2rem;">DL</div>
-                    <div class="logo-name" style="font-size: 0.5rem; letter-spacing: 2px;">DRAGON LEGACY</div>
-                </div>
+        <div class="overlay-header">
+            <span class="close-btn" onclick="closeOverlay()"><i class="fas fa-times"></i></span>
+            <div class="brand-header">
+                <span class="dl-text" style="font-size: 1.2rem;">DL</span>
+                <span class="full-name" style="font-size: 0.45rem;">DRAGON LEGACY</span>
             </div>
-            
-            <div class="overlay-img-container">
-                <img src="" onerror="this.src='https://via.placeholder.com/600x400/000/d4af37?text=LEGACY'" class="overlay-img" id="overlayProductImg">
-            </div>
-
-            <div class="product-details" id="overlayProductDetails">
-                </div>
+        </div>
+        <div class="overlay-content">
+            <img src="" class="overlay-img" id="overlayProductImg">
+            <div id="overlayDetails"></div>
         </div>
     </div>
 
     <div class="cart-page" id="cartPage">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
-            <h2 style="color:var(--gold); font-family:'Cinzel';">Cart 🛍️</h2>
-            <i class="fas fa-times" onclick="closeCart()" style="color:var(--gold); font-size:1.5rem; cursor:pointer;"></i>
+            <h2 style="color:var(--gold); font-family:'Cinzel';">CART</h2>
+            <i class="fas fa-times" onclick="closeCart()" style="color:var(--gold); cursor:pointer;"></i>
         </div>
-        <div id="cartList" style="flex-grow:1; overflow-y:auto; padding:10px 0;"></div>
-        <div id="totalPrice" style="padding:20px; color:#fff; font-size:1.6rem; text-align:center; font-weight:bold; font-family: 'Cinzel', serif; border-top:1px solid #222;"></div>
+        <div id="cartList" style="flex-grow:1; overflow-y:auto;"></div>
+        <div id="totalPrice" style="padding:20px; color:var(--gold); font-size:1.5rem; text-align:center; font-family:'Cinzel';"></div>
         
-        <form action="https://formspree.io/f/your_unique_id" method="POST">
-            <input type="hidden" name="Order_Details" id="orderData">
-            <input type="text" name="Name" placeholder="Full Name" required>
-            <input type="tel" name="Phone" placeholder="Phone Number (WhatsApp)" required>
-            <input type="text" name="Address" placeholder="Detailed Address" required>
-            <select name="Payment" id="payMethod">
-                <option value="Cash">Cash on Delivery</option>
-                <option value="Vodafone">Vodafone Cash</option>
-            </select>
-            <button type="submit" class="add-btn">CONFIRM ORDER 🚀</button>
+        <form>
+            <input type="text" placeholder="FULL NAME" required>
+            <input type="tel" placeholder="PHONE NUMBER" required>
+            <input type="text" placeholder="SHIPPING ADDRESS" required>
+            <button type="button" class="add-btn" style="width:100%; background:var(--gold); color:#000;">ORDER NOW</button>
         </form>
     </div>
 
     <script>
         const products = [
-            { id: 1, name: "LEGACY POLO - BLACK", price: 1250, img: "polo.jpg", desc: "Premium Piqué cotton with the signature gold dragon emblem.", sizes: ["L", "XL", "2XL"] },
-            { id: 2, name: "DRAGON TEE - WHITE", price: 850, img: "tee.jpg", desc: "100% combed cotton, oversized fit for comfort.", sizes: ["XL", "2XL"] },
-            { id: 3, name: "ROYAL HOODIE - ONYX", price: 1800, img: "hoodie.jpg", desc: "Heavyweight fleece with silk-screened graphics.", sizes: ["L", "XL"] },
-            { id: 4, name: "DYNASTY JOGGERS", price: 1100, img: "joggers.jpg", desc: "Tailored fit with ribbed cuffs and gold hardware.", sizes: ["M", "L", "XL"] }
+            { id: 1, name: "ROYAL POLO - ONYX", price: 1250, img: "polo.jpg", desc: "Premium quality with gold dragon stitch.", sizes: ["L", "XL", "2XL"] },
+            { id: 2, name: "LEGACY TEE - IVORY", price: 850, img: "tee.jpg", desc: "Classic oversized fit in pure cotton.", sizes: ["XL", "2XL"] },
+            { id: 3, name: "DYNASTY HOODIE", price: 1800, img: "hoodie.jpg", desc: "Heavy fleece for the winter season.", sizes: ["L", "XL"] }
         ];
 
         let cart = [];
         let selectedSize = null;
 
         function closeSplash() { 
-            const splash = document.getElementById('splash-screen');
-            splash.style.opacity = '0';
-            setTimeout(() => splash.style.display = 'none', 800);
+            document.getElementById('splash-screen').style.opacity = '0';
+            setTimeout(() => document.getElementById('splash-screen').style.display = 'none', 600);
             renderProducts();
         }
 
         function renderProducts() {
             document.getElementById('productGrid').innerHTML = products.map(p => `
                 <div class="card" onclick="viewProduct(${p.id})">
-                    <div class="img-box"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/300x300/000/d4af37?text=LEGACY'"></div>
+                    <div class="img-box"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/300x400/000/d4af37?text=DL'"></div>
                     <div class="info-box">
                         <h4>${p.name}</h4>
                         <div class="price">${p.price} EGP</div>
@@ -210,24 +190,14 @@
             document.getElementById('overlayProductImg').src = p.img;
             selectedSize = null;
 
-            const sizeHtml = p.sizes.map(size => `
-                <button class="size-btn" onclick="selectSize(this, '${size}')">${size}</button>
-            `).join('');
-
-            document.getElementById('overlayProductDetails').innerHTML = `
+            document.getElementById('overlayDetails').innerHTML = `
                 <h1 class="product-title">${p.name}</h1>
                 <p class="product-desc">${p.desc}</p>
-                
-                <div class="size-section">
-                    <h3 class="section-title">Select Size</h3>
-                    <div class="size-options">
-                        ${sizeHtml}
-                    </div>
+                <div class="size-options">
+                    ${p.sizes.map(s => `<button class="size-btn" onclick="selectSize(this, '${s}')">${s}</button>`).join('')}
                 </div>
-
-                <div class="product-price">${p.price} EGP</div>
-                
-                <button class="add-btn" onclick="tryAddToCart(${p.id});">ADD TO CART 🛍️</button>
+                <div class="price" style="font-size:1.8rem; margin-bottom:20px;">${p.price} EGP</div>
+                <button class="add-btn" onclick="addToCart(${p.id})">ADD TO COLLECTION</button>
             `;
             document.getElementById('productOverlay').style.display = 'block';
         }
@@ -238,40 +208,27 @@
             selectedSize = size;
         }
 
-        function tryAddToCart(id) {
-            if(!selectedSize) { alert("Please select a size ❗"); return; }
-            addToCart(id, selectedSize);
-            closeOverlay();
-        }
-
-        function addToCart(id, size) {
+        function addToCart(id) {
+            if(!selectedSize) { alert("Please select a size"); return; }
             const p = products.find(i => i.id === id);
-            cart.push({...p, selectedSize: size});
+            cart.push({...p, size: selectedSize});
             updateCart();
-            const btn = document.querySelector('.cart-bolt');
-            btn.style.transform = 'scale(1.2)';
-            setTimeout(() => btn.style.transform = 'scale(1)', 200);
+            closeOverlay();
         }
 
         function updateCart() {
             document.getElementById('cartBadge').innerText = cart.length;
-            let total = 0;
-            document.getElementById('cartList').innerHTML = cart.map((item, index) => {
-                total += item.price;
-                return `<div style="display:flex; justify-content:space-between; align-items:center; padding:15px; border-bottom:1px solid #111; background:rgba(255,255,255,0.01);">
-                    <div>
-                        <div style="font-weight:bold; color:#fff; font-family:'Cinzel';">${item.name} (${item.selectedSize})</div>
-                        <div style="color:var(--gold);">${item.price} EGP</div>
-                    </div>
-                    <i class="fas fa-trash" onclick="removeFromCart(${index})" style="color:#444; cursor:pointer;"></i>
-                </div>`;
-            }).join('');
-            document.getElementById('totalPrice').innerText = total + " EGP";
-            document.getElementById('orderData').value = cart.map(i => `${i.name} - ${i.selectedSize} (${i.price})`).join(', ') + ` | Total: ${total}`;
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('cartList').innerHTML = cart.map((item, index) => `
+                <div style="display:flex; justify-content:space-between; padding:15px; border-bottom:1px solid #111;">
+                    <div>${item.name} (${item.size})</div>
+                    <div style="color:var(--gold);">${item.price} EGP</div>
+                </div>
+            `).join('');
+            document.getElementById('totalPrice').innerText = "TOTAL: " + total + " EGP";
         }
 
-        function removeFromCart(index) { cart.splice(index, 1); updateCart(); }
-        function openCart() { if(cart.length > 0) document.getElementById('cartPage').style.display = 'flex'; else alert('Cart is empty.'); }
+        function openCart() { document.getElementById('cartPage').style.display = 'flex'; }
         function closeCart() { document.getElementById('cartPage').style.display = 'none'; }
         function closeOverlay() { document.getElementById('productOverlay').style.display = 'none'; }
 
